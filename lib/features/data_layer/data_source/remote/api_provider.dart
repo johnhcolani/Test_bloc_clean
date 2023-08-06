@@ -6,7 +6,7 @@ class ApiProvider {
 
   Future<dynamic> callSimpsonData() async {
     var response = await _dio.get(Constants.baseUrl, queryParameters: {
-      'q': 'simpsons+characters',
+      'q': 'simpsonscharacters',
       'format': 'json',
 
     });
