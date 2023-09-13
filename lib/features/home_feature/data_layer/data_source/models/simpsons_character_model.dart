@@ -1,4 +1,5 @@
-import 'package:anywhere_variant_one/features/domain_layer/entity/simpsons_character_entity.dart';
+
+import '../../../domain_layer/entity/simpsons_character_entity.dart';
 
 /// Abstract : ""
 /// AbstractSource : "Wikipedia"
@@ -36,9 +37,9 @@ class SimpsonsCharacterModel extends SimpsonsCharacterEntity{
     String? entity,
     String? heading,
     String? image,
-    num? imageHeight,
-    num? imageIsLogo,
-    num? imageWidth,
+    // num? imageHeight,
+    // num? imageIsLogo,
+    // num? imageWidth,
     String? infobox,
     String? redirect,
     List<RelatedTopics>? relatedTopics,
@@ -57,9 +58,9 @@ class SimpsonsCharacterModel extends SimpsonsCharacterEntity{
     entity: entity,
     heading: heading,
     image: image,
-    imageHeight: imageHeight,
-    imageIsLogo: imageIsLogo,
-    imageWidth: imageWidth,
+    // imageHeight: imageHeight,
+    // imageIsLogo: imageIsLogo,
+    // imageWidth: imageWidth,
     infobox: infobox,
     redirect: redirect,
     relatedTopics: relatedTopics,
@@ -95,9 +96,9 @@ class SimpsonsCharacterModel extends SimpsonsCharacterEntity{
         entity: json['Entity'],
         heading: json['Heading'],
         image: json['Image'],
-        imageHeight: json['ImageHeight'],
-        imageIsLogo: json['ImageIsLogo'],
-        imageWidth: json['ImageWidth'],
+        // imageHeight: json['ImageHeight'],
+        // imageIsLogo: json['ImageIsLogo'],
+        // imageWidth: json['ImageWidth'],
         infobox: json['Infobox'],
         redirect: json['Redirect'],
         relatedTopics: relatedTopics,
