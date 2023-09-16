@@ -7,12 +7,12 @@ class AppBackground{
     DateTime now =DateTime.now();
     String formattedData = DateFormat('kk').format(now);
     if(6>int.parse(formattedData)){
-      return const AssetImage('assets/images/back.jpg');
+      return const AssetImage('assets/images/simpsonsDark.png');
 
     }else if(18> int.parse(formattedData)){
-      return const AssetImage('assets/images/back.jpg');
+      return const AssetImage('assets/images/simpsons.png');
     } else {
-      return const AssetImage('assets/images/back.jpg');
+      return const AssetImage('assets/images/simpsonsDark.png');
     }
   }
 }

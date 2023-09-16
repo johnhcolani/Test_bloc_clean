@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
+      theme: ThemeData.from(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)),
+
       home: MultiBlocProvider(
        providers: [
          BlocProvider(create: (_)=>locator<SimpsonsCharacterBloc>()),

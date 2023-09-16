@@ -18,6 +18,7 @@ final PageController pageController=PageController(initialPage: 0);
       const BookmarkScreen(),
     ];
     return Scaffold(
+
       extendBody: true,
       bottomNavigationBar: BottomNav( Controller: pageController,),
       body:Container(
@@ -29,6 +30,7 @@ final PageController pageController=PageController(initialPage: 0);
         ),
         height: he,
         child: PageView(
+
           controller: pageController,
           children: pageViewWidget,
         ),

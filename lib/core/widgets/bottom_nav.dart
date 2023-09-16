@@ -19,10 +19,10 @@ shape: const CircularNotchedRectangle(),
           children: [
             IconButton(onPressed: (){
               Controller.animateToPage(0, duration: Duration(microseconds: 300), curve: Curves.bounceIn);
-            }, icon: const Icon(Icons.home)),
+            }, icon: const Icon(Icons.home,color: Colors.white,)),
             IconButton(onPressed: (){
               Controller.animateToPage(1, duration: Duration(microseconds: 300), curve: Curves.bounceIn);
-            }, icon: const Icon(Icons.bookmark))
+            }, icon: const Icon(Icons.bookmark,color: Colors.white,))
           ],
         ),
       ),

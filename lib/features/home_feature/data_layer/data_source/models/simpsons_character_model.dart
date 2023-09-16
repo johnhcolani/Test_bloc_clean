@@ -25,49 +25,28 @@ import '../../../domain_layer/entity/simpsons_character_entity.dart';
 
 class SimpsonsCharacterModel extends SimpsonsCharacterEntity{
   SimpsonsCharacterModel({
-    String? abstract,
-    String? abstractSource,
-    String? abstractText,
-    String? abstractURL,
-    String? answer,
-    String? answerType,
-    String? definition,
-    String? definitionSource,
-    String? definitionURL,
-    String? entity,
-    String? heading,
-    String? image,
-    // num? imageHeight,
-    // num? imageIsLogo,
-    // num? imageWidth,
-    String? infobox,
-    String? redirect,
-    List<RelatedTopics>? relatedTopics,
-    List<dynamic>? results,
-    String? type,
-    Meta? meta}): super(
-    abstract: abstract,
-    abstractSource: abstractSource,
-    abstractText: abstractText,
-    abstractURL: abstractURL,
-    answer: answer,
-    answerType: answerType,
-    definition: definition,
-    definitionSource: definitionSource,
-    definitionURL: definitionURL,
-    entity: entity,
-    heading: heading,
-    image: image,
-    // imageHeight: imageHeight,
-    // imageIsLogo: imageIsLogo,
-    // imageWidth: imageWidth,
-    infobox: infobox,
-    redirect: redirect,
-    relatedTopics: relatedTopics,
-    results: results,
-    type: type,
-    meta: meta
-  );
+    super.abstract,
+    super. abstractSource,
+    super. abstractText,
+    super. abstractURL,
+    super. answer,
+    super. answerType,
+    super. definition,
+    super. definitionSource,
+    super. definitionURL,
+    super. entity,
+    super. heading,
+    super. image,
+    super. imageHeight,
+    super. imageIsLogo,
+    super. imageWidth,
+    super. infobox,
+    super. redirect,
+    super.relatedTopics,
+    super. results,
+    super. type,
+    super. meta});
+
 
   factory SimpsonsCharacterModel.fromJson(dynamic json) {
     var relatedTopics = <RelatedTopics>[];
@@ -83,6 +62,9 @@ class SimpsonsCharacterModel extends SimpsonsCharacterEntity{
     //     results.add(Results.fromJson(v));
     //   });
     // }
+    print(json['AbstractSource']);
+    print(json['AbstractURL']);
+
     return SimpsonsCharacterModel(
       abstract:  json['Abstract'],
         abstractSource: json['AbstractSource'],
@@ -107,27 +89,6 @@ class SimpsonsCharacterModel extends SimpsonsCharacterEntity{
     );
 
   }
-  String? abstract;
-  String? abstractSource;
-  String? abstractText;
-  String? abstractURL;
-  String? answer;
-  String? answerType;
-  String? definition;
-  String? definitionSource;
-  String? definitionURL;
-  String? entity;
-  String? heading;
-  String? image;
-  num? imageHeight;
-  num? imageIsLogo;
-  num? imageWidth;
-  String? infobox;
-  String? redirect;
-  List<RelatedTopics>? relatedTopics;
-  List<dynamic>? results;
-  String? type;
-  Meta? meta;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
