@@ -19,7 +19,7 @@ shape: const CircularNotchedRectangle(),
           children: [
             IconButton(onPressed: (){
               Controller.animateToPage(0, duration: Duration(microseconds: 300), curve: Curves.bounceIn);
-            }, icon: const Icon(Icons.home,color: Colors.white,)),
+            }, icon: const Image(image: AssetImage('assets/images/Simpsons_FamilyPicture.png'),)),
             IconButton(onPressed: (){
               Controller.animateToPage(1, duration: Duration(microseconds: 300), curve: Curves.bounceIn);
             }, icon: const Icon(Icons.bookmark,color: Colors.white,))

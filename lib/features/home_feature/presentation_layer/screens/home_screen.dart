@@ -1,4 +1,6 @@
 import 'package:anywhere_variant_one/core/widgets/dot_loading.dart';
+
+import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain_layer/entity/simpsons_character_entity.dart';
@@ -10,12 +12,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     var he = MediaQuery.of(context).size.height;
     var wi = MediaQuery.of(context).size.width;
     BlocProvider.of<SimpsonsCharacterBloc>(context).add(LoadScEvent());
+
     return SafeArea(
         child: Column(
       children: [
+
+
         BlocBuilder<SimpsonsCharacterBloc, SimpsonsCharacterState>(
             buildWhen: (previous, current) {
           if (previous.scStatus == current.scStatus) {
@@ -28,6 +35,7 @@ class HomeScreen extends StatelessWidget {
           }
           if (state.scStatus is ScCompleted) {
             final ScCompleted simCompleted = state.scStatus as ScCompleted;
+
             final SimpsonsCharacterEntity characterEntity =
                 simCompleted.simpsonsCharacterEntity;
 
