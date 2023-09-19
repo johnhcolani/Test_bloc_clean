@@ -3,6 +3,7 @@ import 'package:anywhere_variant_one/core/widgets/dot_loading.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:searchable_listview/searchable_listview.dart';
 import '../../domain_layer/entity/simpsons_character_entity.dart';
 import '../bloc/simpsons_character_bloc.dart';
 import '../bloc/simpsons_status.dart';
@@ -12,8 +13,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
+    TextEditingController searchController = TextEditingController();
+final List mySuggestion = [];
     var he = MediaQuery.of(context).size.height;
     var wi = MediaQuery.of(context).size.width;
     BlocProvider.of<SimpsonsCharacterBloc>(context).add(LoadScEvent());
@@ -21,6 +22,10 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
         child: Column(
       children: [
+
+
+
+
 
 
         BlocBuilder<SimpsonsCharacterBloc, SimpsonsCharacterState>(
@@ -39,7 +44,7 @@ class HomeScreen extends StatelessWidget {
             final SimpsonsCharacterEntity characterEntity =
                 simCompleted.simpsonsCharacterEntity;
 
-            print(characterEntity);
+
             return Expanded(
                 child: ListView.builder(
               itemCount: characterEntity.relatedTopics!.length,
@@ -55,9 +60,9 @@ class HomeScreen extends StatelessWidget {
                             BorderRadius.circular(20.0), // Border radius
                         child: Card(
                           borderOnForeground: false,
-                          shadowColor: Colors.white,
-                          elevation: 20,
-                          color: const Color(0xB3005b96),
+                          //shadowColor: Colors.white,
+                          elevation: 2,
+                          //color: const Color(0xFF005b96),
                           child: Row(
                             children: [
                               const SizedBox(

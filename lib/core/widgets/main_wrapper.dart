@@ -1,4 +1,4 @@
-import 'package:anywhere_variant_one/core/widgets/app_background.dart';
+
 import 'package:anywhere_variant_one/core/widgets/bottom_nav.dart';
 import 'package:anywhere_variant_one/features/bookmark_feature/presentation_layer/screens/bookmark_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +22,7 @@ final PageController pageController=PageController(initialPage: 0);
       extendBody: true,
       bottomNavigationBar: BottomNav( Controller: pageController,),
       body:Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AppBackground.getBackgroundImage(),
-            fit: BoxFit.cover
-          )
-        ),
+
         height: he,
         child: PageView(
 
