@@ -1,6 +1,5 @@
 import 'package:anywhere_variant_one/core/widgets/dot_loading.dart';
-
-import 'package:easy_search_bar/easy_search_bar.dart';
+import 'package:anywhere_variant_one/features/home_feature/presentation_layer/widgets/bookmark_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:searchable_listview/searchable_listview.dart';
@@ -8,24 +7,32 @@ import '../../domain_layer/entity/simpsons_character_entity.dart';
 import '../bloc/simpsons_character_bloc.dart';
 import '../bloc/simpsons_status.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
     TextEditingController searchController = TextEditingController();
-final List mySuggestion = [];
+    final List mySuggestion = [];
+    print('This is my suggestion List :$mySuggestion');
     var he = MediaQuery.of(context).size.height;
     var wi = MediaQuery.of(context).size.width;
     BlocProvider.of<SimpsonsCharacterBloc>(context).add(LoadScEvent());
+setState(() {
 
+});
     return SafeArea(
         child: Column(
       children: [
-
-
-
-
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SearchBar(),
+        ),
 
 
         BlocBuilder<SimpsonsCharacterBloc, SimpsonsCharacterState>(
@@ -40,7 +47,7 @@ final List mySuggestion = [];
           }
           if (state.scStatus is ScCompleted) {
             final ScCompleted simCompleted = state.scStatus as ScCompleted;
-
+mySuggestion.add(simCompleted.simpsonsCharacterEntity.relatedTopics);
             final SimpsonsCharacterEntity characterEntity =
                 simCompleted.simpsonsCharacterEntity;
 
@@ -50,6 +57,15 @@ final List mySuggestion = [];
               itemCount: characterEntity.relatedTopics!.length,
               itemBuilder: (context, index) {
                 final url = characterEntity.relatedTopics![index].icon!.url;
+                final pathUrl =
+                    characterEntity.relatedTopics![index].firstURL! ?? "";
+                final Uri uri = Uri.parse(pathUrl);
+                final String name =
+                    uri.pathSegments.isNotEmpty ? uri.pathSegments.last : "";
+                final String content =
+                    characterEntity.relatedTopics![index].text ?? "";
+                final String image='https://duckduckgo.com$url';
+                mySuggestion.add(characterEntity.relatedTopics![index].text ?? "");
                 print('this is icon url $url');
                 return Center(
                   child: Padding(
@@ -68,17 +84,29 @@ final List mySuggestion = [];
                               const SizedBox(
                                 width: 20,
                               ),
-                              SizedBox(
-                                height: 80,
-                                width: 40,
-                                child: url!.isNotEmpty
-                                    ? Image.network(
-                                        'https://duckduckgo.com$url')
-                                    : const Icon(
-                                        Icons.person,
-                                        size: 32,
-                                        color: Colors.white,
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: 80,
+                                    width: 40,
+                                    child: url!.isNotEmpty
+                                        ? Image.network(image)
+                                        : const Icon(
+                                            Icons.person,
+                                            size: 32,
+                                            color: Colors.black,
+                                          ),
+                                  ),
+
+                                  IconButton(onPressed: (){
+                                    BookMarkIcon;
+
+                                  },
+                                    icon: Icon(Icons.star_border),
+
+
                                       ),
+                                ],
                               ),
                               const SizedBox(
                                 width: 20,
@@ -86,10 +114,25 @@ final List mySuggestion = [];
                               Expanded(
                                   child: Padding(
                                 padding: const EdgeInsets.all(8),
-                                child: Text(
-                                  characterEntity.relatedTopics![index].text ??
-                                      "",
-                                  style: const TextStyle(color: Colors.white),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      name,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Text(
+                                        content,
+                                        style:
+                                            const TextStyle(color: Colors.black),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ))
                             ],

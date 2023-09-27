@@ -1,11 +1,12 @@
 
+import 'package:anywhere_variant_one/features/bookmark_feature/domain/entity/character_entity.dart';
+import 'package:anywhere_variant_one/features/bookmark_feature/presentation_layer/bloc/get_simpsons_status.dart';
+import 'package:anywhere_variant_one/features/bookmark_feature/presentation_layer/bloc/save_simpsons_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../feature_bookmark/domain/entities/city_entity.dart';
-import '../../../feature_bookmark/presentation/bloc/bookmark_bloc.dart';
-import '../../../feature_bookmark/presentation/bloc/get_city_status.dart';
-import '../../../feature_bookmark/presentation/bloc/save_city_status.dart';
+import '../../../bookmark_feature/presentation_layer/bloc/bookmark_bloc.dart';
+
 
 
 class BookMarkIcon extends StatelessWidget {
@@ -22,80 +23,80 @@ class BookMarkIcon extends StatelessWidget {
     return BlocBuilder<BookmarkBloc,BookmarkState>(
         buildWhen: (previous, current){
           /// if state don't change => don't rebuild UI
-          if(current.getCityStatus == previous.getCityStatus){
+          if(current.getSimpsonsStatus == previous.getSimpsonsStatus){
             return false;
           }
           return true;
         },
         builder: (context, state){
           /// initial save Bloc
-          BlocProvider.of<BookmarkBloc>(context).add(SaveCityInitialEvent());
+          BlocProvider.of<BookmarkBloc>(context).add(SaveSimpsonsInitialEvent());
 
           /// show Loading for CityStatus
-          if(state.getCityStatus is GetCityLoading){
+          if(state.getSimpsonsStatus is GetSimpsonsLoading){
             return const CircularProgressIndicator();
           }
 
           /// show completed for CityStatus
-          if(state.getCityStatus is GetCityCompleted){
+          if(state.getSimpsonsStatus is GetSimpsonsCompleted){
 
             /// casting for Getting city
-            final GetCityCompleted getCityCompleted = state.getCityStatus as GetCityCompleted;
-            final City? city = getCityCompleted.city;
+            final GetSimpsonsCompleted getSimpsonsCompleted = state.getSimpsonsStatus as GetSimpsonsCompleted;
+            final Simpsons? simpsons = getSimpsonsCompleted.simpsons;
 
             return BlocConsumer<BookmarkBloc, BookmarkState>(
               listenWhen: (previous, current){
                 /// if state don't change => don't listen to changes
-                if(current.saveCityStatus == previous.saveCityStatus){
+                if(current.saveSimpsonStatus == previous.saveSimpsonStatus){
                   return false;
                 }
                 return true;
               },
               buildWhen: (previous, current){
                 /// if state don't change => don't rebuild UI
-                if(current.saveCityStatus == previous.saveCityStatus){
+                if(current.saveSimpsonStatus == previous.saveSimpsonStatus){
                   return false;
                 }
                 return true;
               },
-              listener: (context, cityState) {
+              listener: (context, simpsonState) {
 
                 /// show Error as SnackBar
-                if (cityState.saveCityStatus is SaveCityError) {
+                if (simpsonState.saveSimpsonStatus is SaveSimpsonsError) {
                   /// cast for getting Error
-                  final SaveCityError saveCityError = cityState.saveCityStatus as SaveCityError;
+                  final SaveSimpsonsError saveSimpsonsError = simpsonState.saveSimpsonStatus as SaveSimpsonsError;
 
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(saveCityError.message!),
+                    content: Text(saveSimpsonsError.message!),
                     behavior: SnackBarBehavior.floating, // Add this line
                   ),);
                 }
 
                 /// show Success SnackBar
-                if (cityState.saveCityStatus is SaveCityCompleted) {
+                if (simpsonState.saveSimpsonStatus is SaveSimpsonsCompleted) {
                   /// cast for getting Data
-                  final SaveCityCompleted saveCityCompleted = cityState.saveCityStatus as SaveCityCompleted;
+                  final SaveSimpsonsCompleted saveSimpsonsCompleted = simpsonState.saveSimpsonStatus as SaveSimpsonsCompleted;
 
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("${saveCityCompleted.city.name} Added to Bookmark"),
+                    content: Text("${saveSimpsonsCompleted.simpsons.name} Added to Bookmark"),
                     behavior: SnackBarBehavior.floating, // Add this line
                   ),);
                 }
               },
-              builder: (context, cityState) {
+              builder: (context, simpsonsState) {
 
                 /// show UI for initial SaveCity
-                if(cityState.saveCityStatus is SaveCityInitial){
+                if(simpsonsState.saveSimpsonStatus is SaveSimpsonsInitial){
                   return IconButton(
                       onPressed: () {
                         /// call event for save Current City in Database
-                        BlocProvider.of<BookmarkBloc>(context).add(SaveCwEvent(name));
+                        BlocProvider.of<BookmarkBloc>(context).add(SaveSimpsonsEvent(name));
                       },
-                      icon: Icon(city == null ? Icons.star_border : Icons.star, color: Colors.white, size: height * 0.04,),);
+                      icon: Icon(simpsons == null ? Icons.star_border : Icons.star, color: Colors.white, size: height * 0.04,),);
                 }
 
                 /// show UI for Loading SaveCity
-                if (cityState.saveCityStatus is SaveCityLoading) {
+                if (simpsonsState.saveSimpsonStatus is SaveSimpsonsLoading) {
                   return const CircularProgressIndicator();
                 }
 
@@ -103,7 +104,7 @@ class BookMarkIcon extends StatelessWidget {
                 return IconButton(
                     onPressed: () {
                       /// call event for save Current City in Database
-                      BlocProvider.of<BookmarkBloc>(context).add(SaveCwEvent(name));
+                      BlocProvider.of<BookmarkBloc>(context).add(SaveSimpsonsEvent(name));
                     },
                     icon: const Icon(Icons.star, color: Colors.white, size: 35,),);
 
@@ -112,7 +113,7 @@ class BookMarkIcon extends StatelessWidget {
           }
 
           /// show Error for CityStatus
-          if(state.getCityStatus is GetCityError){
+          if(state.getSimpsonsStatus is GetSimpsonsError){
             return IconButton(
                 onPressed: (){
                   // ScaffoldMessenger.of(context).showSnackBar(SnackBar(

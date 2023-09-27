@@ -45,6 +45,8 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   easy_search_bar: ^2.5.0
   searchable_listview: ^2.7.0
+  flutter_typeahead: ^4.7.0
+
 
 dev_dependencies:
   flutter_test:

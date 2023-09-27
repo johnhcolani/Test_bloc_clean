@@ -30,7 +30,7 @@ class SaveSimpsonsCompleted extends SaveSimpsonStatus{
   List<Object?> get props => [simpsons];
 }
 class SaveSimpsonsError extends SaveSimpsonStatus{
-  final String message;
+  final String? message;
 
   SaveSimpsonsError(this.message);
 
