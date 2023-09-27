@@ -1,0 +1,33 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Replace with your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v5
+        with:
+          flutter-version: 2.2.3  # Replace with your desired Flutter version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build APK
+        run: flutter build apk
+
+      - name: Deploy to Firebase (example)
+        run: |
+          # Add your deployment script here
+          # e.g., firebase deploy --token $FIREBASE_TOKEN
